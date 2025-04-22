@@ -3,41 +3,170 @@
 <head>
   <meta charset="UTF-8">
   <title>Information Technology - EduVerse</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+ 
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-    }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top right, #bb023c, #000000 70%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+}
 
+    /* Navbar Style */
     header {
-      background-color: #007bff;
-      padding: 20px;
-      color: white;
-      text-align: center;
+  background: linear-gradient(to right, rgba(80, 80, 80, 0.3), #bb023c);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  z-index: 1000;
+  padding: 15px 30px;
+}
+
+    nav.navbar {
+      display: flex;
+      align-items: center;
     }
 
-    h1 {
-      margin: 0;
+    .logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 80px;
+}
+
+    .dropdown-list {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 9999;
+    display: none;
+    top: 45px;
+    left: 190px;
+  }
+
+  .dropdown-list div {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .dropdown-list div:hover {
+    background-color: #f0f0f0;
+  }
+
+  .search-container {
+    position: relative;
+  }
+    .search-form {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 30px;
     }
+    .search-form input {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .search-form button {
+      background-color: #710225;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .search-form button i {
+      font-size: 14px;
+    }
+
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin-left: 53%;
+    }
+
+    .nav-links li a {
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      transition: background-color 0.3s;
+    }
+    .nav-links li a:hover {
+      background-color: #710225;
+      border-radius: 5px;
+    }
+
+    .menu-icon {
+  cursor: pointer;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15px;
+}
+
+.bar {
+  height: 2px;
+  background-color: white;
+  border-radius: 1px;
+}
+
+#mobile-menu.hidden {
+  display: none;
+}
+
+#mobile-menu ul {
+  list-style: none;
+  background-color: #710225;
+  padding: 10px;
+}
+
+#mobile-menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 8px 0;
+  transition: background-color 0.3s;
+}
 
     .content {
       max-width: 800px;
       margin: 40px auto;
       padding: 20px;
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
     .content h2 {
-      color: #007bff;
+      color: #fcfeff;
     }
 
     .content p {
       font-size: 1em;
-      color: #444;
-      line-height: 1.6;
+      color: #a3a0a0;
+      line-height: 2.0;
     }
 
     .back-home {
@@ -45,29 +174,67 @@
       margin: 30px auto;
       width: fit-content;
       padding: 10px 25px;
-      background-color: #007bff;
+      background-color: #bb023c;
       color: white;
       text-decoration: none;
       border-radius: 8px;
     }
 
     .back-home:hover {
-      background-color: #0056b3;
+      background-color: #710225;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Information Technology</h1>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="home.html">
+          <img src="logo.png" alt="EduVerse Logo">
+        </a>
+      </div>
+      <div class="search-container">
+        <form class="search-form">
+          <input type="text" id="searchInput" placeholder="Search...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="dropdown-list" id="dropdownList"></div>
+      </div>
+      
+  
+      <!-- 🌐 Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+  
+      <div class="menu-icon" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      
+      <nav id="mobile-menu" class="hidden">
+        <ul>
+          <li><a href="branches.html">Branches</a></li>
+          <li><a href="notes.html">Notes</a></li>
+          <li><a href="roadmap.html">Roadmaps</a></li>
+          <li><a href="papers.html">Papers</a></li>
+          <li><a href="chat.html">Chat</a></li>
+        </ul>
+      </nav>
+      
+    </nav>
   </header>
+  
 
   <div class="content">
-    <h2>Overview</h2>
     <p>
       Information Technology (IT) focuses on managing, processing, and storing information securely and efficiently. It involves software development, networks, databases, cybersecurity, and system management.
     </p>
 
-    <h2>What You'll Learn</h2>
+    <h2>💡What You'll Learn</h2>
     <p>
       - Programming Languages (Python, Java, C++)<br>
       - Database Management (SQL, MongoDB)<br>
@@ -76,7 +243,7 @@
       - Data Analysis and IT Infrastructure
     </p>
 
-    <h2>Career Paths</h2>
+    <h2>🚀Career Paths</h2>
     <p>
       - IT Support Specialist<br>
       - System Administrator<br>
@@ -87,5 +254,81 @@
 
     <a class="back-home" href="branches.html">← Back to Branches</a>
   </div>
+
+  <footer style="background: #1a1a1a; padding: 20px; text-align: center; color: #bbb;">
+    <p>&copy; 2025 EduVerse. Made with ❤️ for students.</p>
+    <p>
+      <a href="#" style="color: #bbb; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+      <a href="#" style="color: #bbb; margin: 0 10px;"><i class="fab fa-github"></i></a>
+      <a href="#" style="color: #bbb; margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
+    </p>
+  </footer>
+  
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const dropdownList = document.getElementById("dropdownList");
+  
+    const suggestions = [
+      "Computer Science",
+      "Mechanical Engineering",
+      "Electrical Engineering",
+      "Civil Engineering",
+      "Electronics & Communication",
+      "Notes",
+      "Roadmaps",
+      "Previous Year Papers",
+      "Career Guidance",
+      "Chat with Seniors",
+      "Diploma CSE Notes",
+      "Hackathon Ideas",
+      "HTML CSS Projects",
+      "JavaScript Tutorials"
+    ];
+  
+    searchInput.addEventListener("input", function () {
+      const inputValue = this.value.toLowerCase().trim();
+      dropdownList.innerHTML = "";
+  
+      if (inputValue === "") {
+        dropdownList.style.display = "none";
+        return;
+      }
+  
+      const filtered = suggestions.filter(item =>
+        item.toLowerCase().includes(inputValue)
+      );
+  
+      if (filtered.length > 0) {
+        filtered.forEach(item => {
+          const div = document.createElement("div");
+          div.textContent = item;
+          div.addEventListener("click", () => {
+            searchInput.value = item;
+            dropdownList.style.display = "none";
+            // Optional: Add redirection or search logic here
+          });
+          dropdownList.appendChild(div);
+        });
+  
+        dropdownList.style.display = "block";
+      } else {
+        dropdownList.style.display = "none";
+      }
+    });
+  
+    document.addEventListener("click", function (e) {
+      if (!dropdownList.contains(e.target) && e.target !== searchInput) {
+        dropdownList.style.display = "none";
+      }
+    });
+  
+    function toggleMenu() {
+    const menu = document.getElementById("mobile-menu");
+    menu.classList.toggle("hidden");
+  }
+  
+  </script>
+  
+
 </body>
 </html>

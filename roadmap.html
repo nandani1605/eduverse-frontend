@@ -4,17 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EduVerse - Career Roadmap</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f8f9fa;
-      margin: 0;
-      padding: 0;
+     font-family: Arial, sans-serif;
+     margin: 0;
+     padding: 0;
+     background: radial-gradient(circle at top right, #bb023c, #000000 70%);
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     color: white;
     }
 
     header {
-      background-color: #007bff;
-      padding: 15px 30px;
+      background: linear-gradient(to right, rgba(80, 80, 80, 0.3), #bb023c);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      z-index: 1000;
     }
 
     .navbar {
@@ -26,6 +35,56 @@
       height: 80px;
     }
 
+    .dropdown-list {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 9999;
+    display: none;
+    top: 45px;
+    left: 190px;
+  }
+
+  .dropdown-list div {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .dropdown-list div:hover {
+    background-color: #f0f0f0;
+  }
+
+  .search-container {
+    position: relative;
+  }
+    .search-form {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 30px;
+    }
+    .search-form input {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .search-form button {
+      background-color: #710225;
+      border: none;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .search-form button i {
+      font-size: 14px;
+    }
+
     .nav-links {
       list-style: none;
       display: flex;
@@ -35,10 +94,50 @@
 
     .nav-links li a {
       color: white;
-      font-size: 15px;
+      font-size: 18px;
       text-decoration: none;
       font-weight: bold;
+      padding: 8px 12px;
+      transition: background-color 0.3s;
     }
+
+    .nav-links li a:hover {
+      background-color: #710225;
+      border-radius: 5px;
+    }
+
+    .menu-icon {
+  cursor: pointer;
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15px;
+}
+
+.bar {
+  height: 2px;
+  background-color: white;
+  border-radius: 1px;
+}
+
+#mobile-menu.hidden {
+  display: none;
+}
+
+#mobile-menu ul {
+  list-style: none;
+  background-color: #710225;
+  padding: 10px;
+}
+
+#mobile-menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 8px 0;
+  transition: background-color 0.3s;
+}
 
     .container {
       padding: 40px 20px;
@@ -53,11 +152,14 @@
     }
 
     .roadmap-card {
-      background-color: white;
+      background-color: rgba(110, 109, 109, 0.1); /* 0.1 means 10% white */
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(164, 163, 163, 0.2);
+      backdrop-filter: blur(10px); /* Optional: adds glassmorphism effect */
+      -webkit-backdrop-filter: blur(10px); /* Safari support */
+      color: white; /* Make sure text is visible on transparent bg */
     }
 
     .roadmap-card:hover {
@@ -66,11 +168,11 @@
 
     .roadmap-card h3 {
       margin-bottom: 10px;
-      color: #007bff;
+      color: #fbfcfd;
     }
 
     .roadmap-card p {
-      color: #555;
+      color: #a3a0a0;
       font-size: 0.95em;
     }
 
@@ -78,7 +180,7 @@
       display: inline-block;
       margin-top: 10px;
       padding: 8px 16px;
-      background-color: #007bff;
+      background-color: #bb023c;
       color: white;
       text-decoration: none;
       border-radius: 6px;
@@ -95,20 +197,47 @@
 </head>
 <body>
 
-<header>
-  <nav class="navbar">
-    <div class="logo">
-      <a href="home.html"><img src="logo.png" alt="EduVerse Logo"></a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="home.html">Home</a></li>
-      <li><a href="branches.html">Branches</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="career roadmap.html">Career Roadmap</a></li>
-      <li><a href="contact.html">Contact Us</a></li>
-    </ul>
-  </nav>
-</header>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="home.html">
+          <img src="logo.png" alt="EduVerse Logo">
+        </a>
+      </div>
+      <div class="search-container">
+        <form class="search-form">
+          <input type="text" id="searchInput" placeholder="Search...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="dropdown-list" id="dropdownList"></div>
+      </div>
+      
+  
+      <!-- 🌐 Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+  
+      <div class="menu-icon" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      
+      <nav id="mobile-menu" class="hidden">
+        <ul>
+          <li><a href="branches.html">Branches</a></li>
+          <li><a href="notes.html">Notes</a></li>
+          <li><a href="roadmap.html">Roadmaps</a></li>
+          <li><a href="papers.html">Papers</a></li>
+          <li><a href="chat.html">Chat</a></li>
+        </ul>
+      </nav>
+      
+    </nav>
+  </header>
 
 <div class="container">
   <h1>Career Roadmaps & Guidance</h1>
@@ -118,44 +247,113 @@
     <div class="roadmap-card">
       <h3>Web Development</h3>
       <p>Frontend, backend, full-stack roadmap with top YouTube playlists.</p>
-      <a href="https://roadmap.sh/web" target="_blank">View Roadmap</a>
+      <a href="https://youtu.be/z0n1aQ3IxWI?si=EEmqEfRRssOBUTwo">View Roadmap</a>
     </div>
 
     <div class="roadmap-card">
       <h3>App Development</h3>
       <p>Android using Java/Kotlin or Flutter, iOS with Swift.</p>
-      <a href="https://www.geeksforgeeks.org/android-roadmap/" target="_blank">View Roadmap</a>
+      <a href="https://youtu.be/7nQsQ0rvYqQ?si=QTP4gFhTo8OpunrH">View Roadmap</a>
     </div>
 
     <div class="roadmap-card">
       <h3>Data Science / AI</h3>
       <p>Python, ML libraries, Kaggle practice, and projects.</p>
-      <a href="https://roadmap.sh/data-scientist" target="_blank">View Roadmap</a>
+      <a href="https://youtu.be/uIUvpJdYgSA?si=aSIXFc_fS-jCLktN">View Roadmap</a>
     </div>
 
     <div class="roadmap-card">
       <h3>Government Jobs</h3>
       <p>SSC, Railway, Banking, and UPSC preparation guidance.</p>
-      <a href="https://www.youtube.com/@studyIQeducation" target="_blank">Watch Videos</a>
+      <a href="https://youtu.be/PU3-ZeVlWpQ?si=Xog0lJ9W1R_PlUrU">View Videos</a>
     </div>
 
     <div class="roadmap-card">
       <h3>Cybersecurity</h3>
       <p>Ethical hacking, bug bounty, tools and certifications.</p>
-      <a href="https://roadmap.sh/cyber-security" target="_blank">View Roadmap</a>
+      <a href="https://youtu.be/vK4Mno4QYqk?si=ukakoT8yBiTeI_TT">View Roadmap</a>
     </div>
 
     <div class="roadmap-card">
       <h3>Freelancing</h3>
       <p>Upwork, Fiverr, building portfolio, getting international clients.</p>
-      <a href="https://www.youtube.com/watch?v=yGg5nqVsoQ0" target="_blank">Watch Videos</a>
+      <a href="https://youtu.be/S-kQqCPUc3Y?si=PDbLI6rv94TacNkS">View Videos</a>
     </div>
   </div>
 </div>
 
-<footer>
-  <p>&copy; 2025 EduVerse | All Rights Reserved</p>
+<footer style="background: #1a1a1a; padding: 20px; text-align: center; color: #bbb;">
+  <p>&copy; 2025 EduVerse. Made with ❤️ for students.</p>
+  <p>
+    <a href="#" style="color: #bbb; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+    <a href="#" style="color: #bbb; margin: 0 10px;"><i class="fab fa-github"></i></a>
+    <a href="#" style="color: #bbb; margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
+  </p>
 </footer>
 
+<script>
+  const searchInput = document.getElementById("searchInput");
+    const dropdownList = document.getElementById("dropdownList");
+  
+    const suggestions = [
+      "Computer Science",
+      "Mechanical Engineering",
+      "Electrical Engineering",
+      "Civil Engineering",
+      "Electronics & Communication",
+      "Notes",
+      "Roadmaps",
+      "Previous Year Papers",
+      "Career Guidance",
+      "Chat with Seniors",
+      "Diploma CSE Notes",
+      "Hackathon Ideas",
+      "HTML CSS Projects",
+      "JavaScript Tutorials"
+    ];
+  
+    searchInput.addEventListener("input", function () {
+      const inputValue = this.value.toLowerCase().trim();
+      dropdownList.innerHTML = "";
+  
+      if (inputValue === "") {
+        dropdownList.style.display = "none";
+        return;
+      }
+  
+      const filtered = suggestions.filter(item =>
+        item.toLowerCase().includes(inputValue)
+      );
+  
+      if (filtered.length > 0) {
+        filtered.forEach(item => {
+          const div = document.createElement("div");
+          div.textContent = item;
+          div.addEventListener("click", () => {
+            searchInput.value = item;
+            dropdownList.style.display = "none";
+            // Optional: Add redirection or search logic here
+          });
+          dropdownList.appendChild(div);
+        });
+  
+        dropdownList.style.display = "block";
+      } else {
+        dropdownList.style.display = "none";
+      }
+    });
+  
+    document.addEventListener("click", function (e) {
+      if (!dropdownList.contains(e.target) && e.target !== searchInput) {
+        dropdownList.style.display = "none";
+      }
+    });
+  
+    function toggleMenu() {
+    const menu = document.getElementById("mobile-menu");
+    menu.classList.toggle("hidden");
+  }
+  
+</script>
 </body>
 </html>
